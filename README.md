@@ -1,4 +1,4 @@
-# Implementation of Logistic Regression Using SGD Classifier
+# Ex 07 - SGD-Classifier
 ## AIM:
 To write a program to predict the type of species of the Iris flower using the SGD Classifier.
 
@@ -16,64 +16,57 @@ To write a program to predict the type of species of the Iris flower using the S
 
 ## Program:
 ```
+/*
 Program to implement the prediction of iris species using SGD Classifier.
-Developed by: KALAISELVAN J
-RegisterNumber:  212223080022
+Developed by:    GANESH D
+RegisterNumber:  212223240035
+*/
 ```
+
 ```
 import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score,confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
+```
 
-# Load the Iris dataset
-iris = load_iris()
-
-# Create a Pandas DataFrame
-df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-df['target'] = iris.target
-
-# Display the first few rows of the dataset
+```
+iris=load_iris()
+df=pd.DataFrame(data=iris.data, columns=iris.feature_names)
+df['target']=iris.target
 print(df.head())
+```
 
-# Split the data into features (X) and target (y)
-X = df.drop('target', axis=1)
-y = df['target']
+<img width="750" alt="image" src="https://github.com/user-attachments/assets/551e037b-c209-4ad1-a8e0-93173ede22fb">
 
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+X=df.drop('target',axis=1)
+Y=df['target']
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=1)
+sgd_clf=SGDClassifier(max_iter=1000,tol=1e-3)
+```
 
-# Create an SGD classifier with default parameters
-sgd_clf = SGDClassifier(max_iter=1000, tol=1e-3)
+```
+sgd_clf.fit(X_train,Y_train)
+```
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/4e8d4a22-41de-47f1-bb8c-59bcd32a0b5c">
 
-# Train the classifier on the training data
-sgd_clf.fit(X_train, y_train)
-
-# Make predictions on the testing data
-y_pred = sgd_clf.predict(X_test)
-
-# Evaluate the classifier's accuracy
-accuracy = accuracy_score(y_test, y_pred)
+```
+y_pred=sgd_clf.predict(X_test)
+accuracy=accuracy_score(Y_test,y_pred)
 print(f"Accuracy: {accuracy:.3f}")
+```
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/b215ef46-3d14-4a75-8b8c-33fde6509893">
 
-# Calculate the confusion matrix
-cm = confusion_matrix(y_test, y_pred)
+```
+cm=confusion_matrix(Y_test,y_pred)
 print("Confusion Matrix:")
 print(cm)
 ```
-
-## Output:
-
-![image](https://github.com/user-attachments/assets/beeede28-eb80-4088-bb31-30d5294cb85d)
-
-
-![image](https://github.com/user-attachments/assets/a58826f6-d3ab-4e40-ad63-d581bf93527d)
-
-
-![image](https://github.com/user-attachments/assets/59a53f3f-366a-4259-a79d-3f672048f48f)
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/60985f71-e36a-4316-bf5f-150b2df345d1">
 
 
 ## Result:
